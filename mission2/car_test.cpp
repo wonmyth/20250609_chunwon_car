@@ -204,6 +204,7 @@ TEST(Group, TC_isValidCheckByCompany3) {
 	CarAssembly& car = CarAssembly::getIncetance();
 	int fail_type;
 	bool ret;
+	car.InitCarType();
 	car.selectCarType(TRUCK);
 	car.selectEngine(WIA);
 	ret = car.isValidCheckByCompany(&fail_type);
@@ -215,7 +216,9 @@ TEST(Group, TC_isValidCheckByCompany4) {
 	CarAssembly& car = CarAssembly::getIncetance();
 	int fail_type;
 	bool ret;
+	car.InitCarType();
 	car.selectCarType(TRUCK);
+	car.selectEngine(TOYOTA);
 	car.selectBrakeSystem(MANDO);
 	ret = car.isValidCheckByCompany(&fail_type);
 	EXPECT_EQ(false, ret);
@@ -227,6 +230,7 @@ TEST(Group, TC_isValidCheckByCompany5) {
 	CarAssembly& car = CarAssembly::getIncetance();
 	int fail_type;
 	bool ret;
+	car.InitCarType();
 	car.selectBrakeSystem(BOSCH_B);
 	car.selectSteeringSystem(MOBIS);
 	ret = car.isValidCheckByCompany(&fail_type);
@@ -238,7 +242,7 @@ TEST(Group, TC_isValidCheckByCompany6) {
 	CarAssembly& car = CarAssembly::getIncetance();
 	int *fail_type = nullptr;
 	bool ret;
-	
+	car.InitCarType();
 	ret = car.isValidCheckByCompany(fail_type);
 	EXPECT_EQ(false, ret);
 	car.testProducedCar();
@@ -248,8 +252,10 @@ TEST(Group, TC_isValidCheckByCompany7) {
 	CarAssembly& car = CarAssembly::getIncetance();
 	int fail_type;
 	bool ret;
-	car.selectCarType(SEDAN);
+	car.InitCarType();
+	car.selectCarType(SUV);
 	car.selectEngine(WIA);
+	car.selectBrakeSystem(CONTINENTAL);
 	ret = car.isValidCheckByCompany(&fail_type);
 	EXPECT_EQ(true, ret);
 	EXPECT_EQ(MATCH_SUCCESS, fail_type);
@@ -265,6 +271,8 @@ TEST(Group, TC_runProducedCar) {
 	ret = car.isValidCheckByCompany(&fail_type);
 	EXPECT_EQ(false, ret);
 	EXPECT_EQ(MATCH_SEDAN_CONTINENTAL, fail_type);
+
+	car.InitCarType();
 	car.runProducedCar();
 }
 TEST(Group, TC_runProducedCar2) {
@@ -275,8 +283,11 @@ TEST(Group, TC_runProducedCar2) {
 }
 TEST(Group, TC_runProducedCar3) {
 	CarAssembly& car = CarAssembly::getIncetance();
+	car.InitCarType();
 	car.selectCarType(SEDAN);
 	car.selectEngine(WIA);
+	car.selectBrakeSystem(MANDO);
+	car.selectSteeringSystem(MOBIS);
 	car.runProducedCar();
 }
 
