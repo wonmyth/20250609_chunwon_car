@@ -1,0 +1,4 @@
+﻿  car_asm_code.cpp
+  car_test.cpp
+C:\LCW\prj\car_prj\car_prj\car_test.cpp(271,6): warning C4101: 'fail_type' :참조되지 않은 지역 변수입니다.
+  car_prj.vcxproj -> C:\LCW\prj\car_prj\x64\Debug\car_prj.exe
